@@ -6,7 +6,34 @@
         xmlns:local="clr-namespace:ComputeWidthBerforRenderingSample002"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <!-- Sample 002 describes how to compute text width before rendering -->
+    <Window.DataContext >
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Grid Margin="12">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="72"/>
+        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding People}">
+            <ItemsControl.ItemTemplate >
+                <DataTemplate >
+                    <Grid>                       
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.WidthOfName}"/>
+                            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.WidthOfCity}"/>
+                        </Grid.ColumnDefinitions>
 
+                        <TextBlock Text="{Binding Name}" Grid.Column="0" FontFamily="新細明體" FontSize="12"
+                                   HorizontalAlignment="Stretch" Background="SkyBlue"/>
+                        <TextBlock Text="{Binding City}" Grid.Column="1" FontFamily="新細明體" FontSize="12"
+                                   HorizontalAlignment="Stretch" Background="YellowGreen"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Content="Add" Command="{Binding AddCommand}" Width="64" Height="32"/>
+        </StackPanel>
     </Grid>
 </Window>

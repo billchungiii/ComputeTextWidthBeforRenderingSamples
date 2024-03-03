@@ -2,10 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ComputeWidthBerforRenderingSample001
 {
@@ -42,6 +45,8 @@ namespace ComputeWidthBerforRenderingSample001
                 People.Add(new Person { Name = "Shrek family", City = "Far Far Away Kingdom" });
             });
         }
+
+
     }
 
     public class Person : NotifyPropertyBase
