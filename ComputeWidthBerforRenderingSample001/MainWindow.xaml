@@ -1,0 +1,38 @@
+﻿<Window x:Class="ComputeWidthBerforRenderingSample001.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputeWidthBerforRenderingSample001"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <!-- Sample 001 describes the issue of misaligned tables when using "ColumnDefinition Width = Auto" -->
+    <Window.DataContext >
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Grid Margin="12">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="72"/>
+        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding People}">
+            <ItemsControl.ItemTemplate >
+                <DataTemplate >
+                    <Grid>
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>      
+                        <TextBlock Text="{Binding Name}" Grid.Column="0" FontFamily="新細明體" FontSize="12"
+                                   HorizontalAlignment="Stretch" Background="SkyBlue"/>
+                        <TextBlock Text="{Binding City}" Grid.Column="1" FontFamily="新細明體" FontSize="12"
+                                   HorizontalAlignment="Stretch" Background="YellowGreen"/>                        
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Content="Add" Command="{Binding AddCommand}" Width="64" Height="32"/>
+        </StackPanel>
+    </Grid>
+</Window>
